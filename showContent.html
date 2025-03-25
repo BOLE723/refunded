@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>展示图片和文字</title>
+    <style>
+        /* 设置容器 */
+        .container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 100vh;
+        }
+        /* 设置图片的样式 */
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* 保持图片比例并填充 */
+        }
+        /* 设置文字的样式 */
+        .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: red;  /* 设置文字颜色为红色 */
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* 增加文字阴影使其更清晰 */
+            text-align: center;
+            max-width: 90%;  /* 防止文字太长而溢出 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 动态加载图片 -->
+        <img id="image" class="image" src="" alt="Image">
+        <!-- 动态加载文字 -->
+        <div id="text" class="text"></div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // 获取 URL 中的查询参数
+            var params = new URLSearchParams(window.location.search);
+            var imageUrl = params.get("image");
+            var textContent = params.get("text");
+
+            // 显示图片和文字
+            document.getElementById("image").src = imageUrl;
+            document.getElementById("text").innerText = decodeURIComponent(textContent);
+        }
+    </script>
+</body>
+</html>
+
+
+
